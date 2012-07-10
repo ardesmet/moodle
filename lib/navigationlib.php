@@ -2507,7 +2507,7 @@ class global_navigation extends navigation_node {
         }
 
         $issite = ($course->id == $SITE->id);
-        $shortname = format_string($course->shortname, true, array('context' => $coursecontext));
+        $shortname = format_string($course->fullname, true, array('context' => $coursecontext));
 
         if ($issite) {
             $parent = $this;
