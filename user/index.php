@@ -792,6 +792,7 @@
         echo '<input type="button" id="checkall" value="'.get_string('selectall').'" /> ';
         echo '<input type="button" id="checknone" value="'.get_string('deselectall').'" /> ';
         $displaylist = array();
+		$displaylist['excel.php'] = get_string('downloadexcel');
         $displaylist['messageselect.php'] = get_string('messageselectadd');
         if (!empty($CFG->enablenotes) && has_capability('moodle/notes:manage', $context) && $context->id != $frontpagectx->id) {
             $displaylist['addnote.php'] = get_string('addnewnote', 'notes');
