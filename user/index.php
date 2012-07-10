@@ -335,7 +335,7 @@
         $tableheaders[] = get_string('lastaccess');
     }
 	$tablecolumns[] = 'section';
-    $tableheaders[] = 'section';
+    $tableheaders[] = 'Section';
     if ($bulkoperations) {
         $tablecolumns[] = 'select';
         $tableheaders[] = get_string('select');
