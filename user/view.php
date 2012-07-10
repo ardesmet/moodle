@@ -256,7 +256,7 @@ if (!isset($hiddenfields['lastaccess'])) {
 if ($rolestring = get_user_roles_in_course($id, $course->id)) {
     print_row(get_string('roles').':', $rolestring);
 }
-
+profile_display_fields($user->id);
 // Show groups this user is in
 if (!isset($hiddenfields['groups'])) {
     $accessallgroups = has_capability('moodle/site:accessallgroups', $coursecontext);
