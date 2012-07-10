@@ -31,7 +31,7 @@ $id = required_param('id', PARAM_INT);
 $PAGE->set_url('/user/action_redir.php', array('formaction'=>$formaction,'id'=>$id));
 
 // Add every page will be redirected by this script
-$actions = array(
+$actions = array('excel.php',
         'messageselect.php',
         'addnote.php',
         'groupaddnote.php',
