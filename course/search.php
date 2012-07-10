@@ -313,7 +313,7 @@ if ($courses) {
 
             echo "<tr>\n";
             echo "<td><a $linkcss href=\"view.php?id=$course->id\">"
-                . highlight($search, format_string($course->fullname)) . "</a></td>\n";
+               . highlight($search, format_string($course->fullname).' ('.format_string($course->shortname).')') . "</a></td>\n";
             echo "<td>".$displaylist[$course->category]."</td>\n";
             echo "<td>\n";
 
