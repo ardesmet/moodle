@@ -5,7 +5,7 @@
     require_once('../config.php');
     require_once($CFG->libdir.'/tablelib.php');
     require_once($CFG->libdir.'/filelib.php');
-
+	require_once($CFG->dirroot . '/user/profile/lib.php');
     define('USER_SMALL_CLASS', 20);   // Below this is considered small
     define('USER_LARGE_CLASS', 200);  // Above this is considered large
     define('DEFAULT_PAGE_SIZE', 1000);
