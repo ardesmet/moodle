@@ -8,7 +8,7 @@
 
     define('USER_SMALL_CLASS', 20);   // Below this is considered small
     define('USER_LARGE_CLASS', 200);  // Above this is considered large
-    define('DEFAULT_PAGE_SIZE', 20);
+    define('DEFAULT_PAGE_SIZE', 1000);
     define('SHOW_ALL_PAGE_SIZE', 5000);
     define('MODE_BRIEF', 0);
     define('MODE_USERDETAILS', 1);
@@ -334,7 +334,8 @@
         $tablecolumns[] = 'lastaccess';
         $tableheaders[] = get_string('lastaccess');
     }
-
+	$tablecolumns[] = 'section';
+    $tableheaders[] = 'section';
     if ($bulkoperations) {
         $tablecolumns[] = 'select';
         $tableheaders[] = get_string('select');
@@ -355,7 +356,7 @@
     $table->no_sorting('groups');
     $table->no_sorting('groupings');
     $table->no_sorting('select');
-
+	$table->no_sorting('section');
     $table->set_attribute('cellspacing', '0');
     $table->set_attribute('id', 'participants');
     $table->set_attribute('class', 'generaltable generalbox');
@@ -773,7 +774,8 @@
                         $data[] = implode(', ', array_map('s', $userlist_extra[$user->id]['gping']));
                     }
                 }
-
+				$section = profile_user_record($user->id);
+				$data[] = $section->section;
                 if ($bulkoperations) {
                     $data[] = '<input type="checkbox" class="usercheckbox" name="user'.$user->id.'" />';
                 }
