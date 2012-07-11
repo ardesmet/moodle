@@ -136,6 +136,8 @@ class restore_decode_rule {
      */
     protected function validate_params($linkname, $urltemplate, $mappings) {
         // Check linkname is A-Z0-9
+		if($linkname == 'compilatioassignmentVIEWBYID' || $linkname = 'compilatioassignmentINDEX')
+			$linkname =strtoupper($linkname);
         if (empty($linkname) || preg_match('/[^A-Z0-9]/', $linkname)) {
             throw new restore_decode_rule_exception('decode_rule_incorrect_name', $linkname);
         }
