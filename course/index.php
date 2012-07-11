@@ -87,7 +87,7 @@ if (!$adminediting) {
         echo $OUTPUT->box_start('categorybox');
         print_whole_category_list();
         echo $OUTPUT->box_end();
-        print_course_search();
+        //print_course_search();
     } else {
         $PAGE->navbar->add($strfulllistofcourses);
         $PAGE->set_title("$site->shortname: $strfulllistofcourses");
