@@ -419,8 +419,8 @@ BRANCH.prototype = {
                         this.addChild(object.children[i]);
                     }
                 }
-                if (this.get('type') == 10 && coursecount >= M.block_navigation.courselimit) {
-                    this.addViewAllCoursesChild(this);
+                //if (this.get('type') == 10 && coursecount >= M.block_navigation.courselimit) {
+                    //this.addViewAllCoursesChild(this);
                 }
                 this.get('tree').toggleExpansion({target:this.node});
                 return true;
