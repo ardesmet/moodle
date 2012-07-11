@@ -859,8 +859,19 @@ function print_overview($courses, array $remote_courses=array()) {
         if (empty($course->visible)) {
             $attributes['class'] = 'dimmed';
         }
-        echo $OUTPUT->heading(html_writer::link(
-            new moodle_url('/course/view.php', array('id' => $course->id)), $fullname, $attributes), 3);
+       if(preg_match("#[A-Z]+HD[0-9]+#", $course->shortname))
+		{
+			echo $OUTPUT->heading(html_writer::link(
+				new moodle_url('/course/view.php', array('id' => $course->id)), format_string($course->fullname.' (HD)'), $attributes), 3);
+		}
+		else if(preg_match("#[A-Z]+HC[0-9]+#", $course->shortname))
+		{
+			echo $OUTPUT->heading(html_writer::link(
+				new moodle_url('/course/view.php', array('id' => $course->id)), format_string($course->fullname.' (Charleroi)'), $attributes), 3);
+		}
+		else
+			echo $OUTPUT->heading(html_writer::link(
+				new moodle_url('/course/view.php', array('id' => $course->id)), format_string($course->fullname), $attributes), 3);
         if (array_key_exists($course->id,$htmlarray)) {
             foreach ($htmlarray[$course->id] as $modname => $html) {
                 echo $html;
@@ -2259,7 +2270,7 @@ function make_categories_options() {
 function get_course_display_name_for_list($course) {
     global $CFG;
     if (!empty($CFG->courselistshortnames)) {
-        return $course->shortname . ' ' .$course->fullname;
+        return $course->shortname . ' ' .$course->shortname;
     } else {
         return $course->fullname;
     }
@@ -2516,7 +2527,13 @@ function print_course($course, $highlightterms = '') {
     echo html_writer::start_tag('h3', array('class'=>'name'));
 
     $linkhref = new moodle_url('/course/view.php', array('id'=>$course->id));
-
+	if(preg_match("#[A-Z]+HD[0-9]+#", $course->shortname))
+		$linktext = highlight($highlightterms, format_string($course->fullname.' (HD)'));
+	else if(preg_match("#[A-Z]+HC[0-9]+#", $course->shortname))
+		$linktext = highlight($highlightterms, format_string($course->fullname.' (Charleroi)'));
+	else
+		$linktext = highlight($highlightterms, format_string($course->fullname));
+		
     $coursename = get_course_display_name_for_list($course);
     $linktext = highlight($highlightterms, format_string($coursename));
     $linkparams = array('title'=>get_string('entercourse'));
@@ -2661,9 +2678,10 @@ function print_my_moodle() {
 
     } else {
         if ($DB->count_records("course_categories") > 1) {
-            echo $OUTPUT->box_start("categorybox");
-            print_whole_category_list();
-            echo $OUTPUT->box_end();
+            // echo $OUTPUT->box_start("categorybox");
+            // print_whole_category_list();
+            // echo $OUTPUT->box_end();
+			print("Vous n'&ecirc;tes inscrit &agrave; aucun cours");
         } else {
             print_courses(0);
         }
