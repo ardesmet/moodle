@@ -594,7 +594,10 @@ class auth_plugin_ldap extends auth_plugin_base {
 
         return $result;
     }
-
+	
+    function cron() {
+		$this->sync_users(true);
+	}
     /**
      * Syncronizes user fron external LDAP server to moodle user table
      *
@@ -1514,7 +1517,7 @@ class auth_plugin_ldap extends auth_plugin_base {
             // Now start the whole NTLM machinery.
             if(!empty($this->config->ntlmsso_ie_fastpath)) {
                 // Shortcut for IE browsers: skip the attempt page
-                if(check_browser_version('MSIE')) {
+                if(check_browser_version('MSIE') || (check_browser_version('Chrome'))) {
                     $sesskey = sesskey();
                     redirect($CFG->wwwroot.'/auth/ldap/ntlmsso_magic.php?sesskey='.$sesskey);
                 } else {
