@@ -2668,13 +2668,13 @@ function print_my_moodle() {
         unset($course);
         unset($host);
 
-        if ($DB->count_records("course") > (count($courses) + 1) ) {  // Some courses not being displayed
-            echo "<table width=\"100%\"><tr><td align=\"center\">";
-            print_course_search("", false, "short");
-            echo "</td><td align=\"center\">";
-            echo $OUTPUT->single_button("$CFG->wwwroot/course/index.php", get_string("fulllistofcourses"), "get");
-            echo "</td></tr></table>\n";
-        }
+        // if ($DB->count_records("course") > (count($courses) + 1) ) {  // Some courses not being displayed
+            // echo "<table width=\"100%\"><tr><td align=\"center\">";
+            // print_course_search("", false, "short");
+            // echo "</td><td align=\"center\">";
+            // echo $OUTPUT->single_button("$CFG->wwwroot/course/index.php", get_string("fulllistofcourses"), "get");
+            // echo "</td></tr></table>\n";
+        // }
 
     } else {
         if ($DB->count_records("course_categories") > 1) {
