@@ -27,3 +27,9 @@ CVS
 /.cache
 phpunit.xml
 simplespace
+/question\type/ddimagetoimage
+/question\type/ddwtos
+/mod/compilatioassignment
+/question\type/gapselect
+/question\type/ddwtos
+/mod\assignment\type/onlineaudio
