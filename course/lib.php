@@ -839,7 +839,7 @@ function print_log_ods($course, $user, $date, $order='l.time DESC', $modname,
 
 function print_overview($courses, array $remote_courses=array()) {
     global $CFG, $USER, $DB, $OUTPUT;
-
+	
     $htmlarray = array();
     if ($modules = $DB->get_records('modules')) {
         foreach ($modules as $mod) {
@@ -859,8 +859,10 @@ function print_overview($courses, array $remote_courses=array()) {
         if (empty($course->visible)) {
             $attributes['class'] = 'dimmed';
         }
+		
        if(preg_match("#[A-Z]+HD[0-9]+#", $course->shortname))
 		{
+			
 			echo $OUTPUT->heading(html_writer::link(
 				new moodle_url('/course/view.php', array('id' => $course->id)), format_string($course->fullname.' (HD)'), $attributes), 3);
 		}
@@ -2270,7 +2272,7 @@ function make_categories_options() {
 function get_course_display_name_for_list($course) {
     global $CFG;
     if (!empty($CFG->courselistshortnames)) {
-        return $course->shortname . ' ' .$course->shortname;
+       return $course->fullname .' ('.$course->shortname . ')';
     } else {
         return $course->fullname;
     }
@@ -2535,7 +2537,8 @@ function print_course($course, $highlightterms = '') {
 		$linktext = highlight($highlightterms, format_string($course->fullname));
 		
     $coursename = get_course_display_name_for_list($course);
-    $linktext = highlight($highlightterms, format_string($coursename));
+
+    //$linktext = highlight($highlightterms, format_string($coursename));
     $linkparams = array('title'=>get_string('entercourse'));
     if (empty($course->visible)) {
         $linkparams['class'] = 'dimmed';
