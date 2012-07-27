@@ -468,7 +468,7 @@ class core_renderer extends renderer_base {
                 $link= '<a title="' . $title . '" href="' . $url . '">' . $txt . '</a>';
                 $output .= '<div class="profilingfooter">' . $link . '</div>';
             }
-            $output .= '<div class="purgecaches"><a href="'.$CFG->wwwroot.'/admin/purgecaches.php?confirm=1&amp;sesskey='.sesskey().'">'.get_string('purgecaches', 'admin').'</a></div>';
+            $output .= '<div class="purgecaches"><a href="'.$CFG->wwwroot.'/'.$CFG->admin.'/purgecaches.php?confirm=1&amp;sesskey='.sesskey().'">'.get_string('purgecaches', 'admin').'</a></div>';
         }
         if (!empty($CFG->debugvalidators)) {
             // NOTE: this is not a nice hack, $PAGE->url is not always accurate and $FULLME neither, it is not a bug if it fails. --skodak
@@ -2050,7 +2050,7 @@ $icon_progress
 </div>
 <div id="filepicker-wrapper-{$client_id}" class="mdl-left" style="display:none">
     <div>
-        <input type="button" id="filepicker-button-{$client_id}" value="{$straddfile}"{$buttonname}/>
+        <input type="button" class="fp-btn-choose" id="filepicker-button-{$client_id}" value="{$straddfile}"{$buttonname}/>
         <span> $maxsize </span>
     </div>
 EOD;

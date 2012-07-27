@@ -79,7 +79,28 @@ function form_init_date_js() {
     if (!$done) {
         $module   = 'moodle-form-dateselector';
         $function = 'M.form.dateselector.init_date_selectors';
-        $config = array(array('firstdayofweek'=>get_string('firstdayofweek', 'langconfig')));
+        $config = array(array(
+            'firstdayofweek'    =>  get_string('firstdayofweek', 'langconfig'),
+            'mon'               => strftime('%a', 360000),      // 5th Jan 1970 at 12pm
+            'tue'               => strftime('%a', 446400),
+            'wed'               => strftime('%a', 532800),
+            'thu'               => strftime('%a', 619200),
+            'fri'               => strftime('%a', 705600),
+            'sat'               => strftime('%a', 792000),
+            'sun'               => strftime('%a', 878400),
+            'january'           => strftime('%B', 14400),       // 1st Jan 1970 at 12pm
+            'february'          => strftime('%B', 2692800),
+            'march'             => strftime('%B', 5112000),
+            'april'             => strftime('%B', 7790400),
+            'may'               => strftime('%B', 10382400),
+            'june'              => strftime('%B', 13060800),
+            'july'              => strftime('%B', 15652800),
+            'august'            => strftime('%B', 18331200),
+            'september'         => strftime('%B', 21009600),
+            'october'           => strftime('%B', 23601600),
+            'november'          => strftime('%B', 26280000),
+            'december'          => strftime('%B', 28872000)
+        ));
         $PAGE->requires->yui_module($module, $function, $config);
         $done = true;
     }
@@ -381,6 +402,22 @@ abstract class moodleform {
                         if (!$files = $fs->get_area_files($context->id, 'user', 'draft', $draftid, 'id DESC', false)) {
                             $errors[$elementname] = $rule['message'];
                         }
+                    }
+                }
+            }
+        }
+        // Check all the filemanager elements to make sure they do not have too many
+        // files in them.
+        foreach ($mform->_elements as $element) {
+            if ($element->_type == 'filemanager') {
+                $maxfiles = $element->getMaxfiles();
+                if ($maxfiles > 0) {
+                    $draftid = (int)$element->getValue();
+                    $fs = get_file_storage();
+                    $context = context_user::instance($USER->id);
+                    $files = $fs->get_area_files($context->id, 'user', 'draft', $draftid, '', false);
+                    if (count($files) > $maxfiles) {
+                        $errors[$element->getName()] = get_string('err_maxfiles', 'form', $maxfiles);
                     }
                 }
             }
