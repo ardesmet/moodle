@@ -2635,9 +2635,13 @@ function print_my_moodle() {
         if (!empty($courses)) {
             echo '<ul class="unlist">';
             foreach ($courses as $course) {
-                if ($course->id == SITEID) {
+			
+			if ($course->id == SITEID) {
                     continue;
                 }
+			if ($course->visible == 0) {
+					continue;
+				}
                 echo '<li>';
                 print_course($course);
                 echo "</li>\n";
