@@ -839,7 +839,7 @@ function print_log_ods($course, $user, $date, $order='l.time DESC', $modname,
 
 function print_overview($courses, array $remote_courses=array()) {
     global $CFG, $USER, $DB, $OUTPUT;
-	
+
     $htmlarray = array();
     if ($modules = $DB->get_records('modules')) {
         foreach ($modules as $mod) {
@@ -859,21 +859,8 @@ function print_overview($courses, array $remote_courses=array()) {
         if (empty($course->visible)) {
             $attributes['class'] = 'dimmed';
         }
-		
-       if(preg_match("#[A-Z]+HD[0-9]+#", $course->shortname))
-		{
-			
-			echo $OUTPUT->heading(html_writer::link(
-				new moodle_url('/course/view.php', array('id' => $course->id)), format_string($course->fullname.' (HD)'), $attributes), 3);
-		}
-		else if(preg_match("#[A-Z]+HC[0-9]+#", $course->shortname))
-		{
-			echo $OUTPUT->heading(html_writer::link(
-				new moodle_url('/course/view.php', array('id' => $course->id)), format_string($course->fullname.' (Charleroi)'), $attributes), 3);
-		}
-		else
-			echo $OUTPUT->heading(html_writer::link(
-				new moodle_url('/course/view.php', array('id' => $course->id)), format_string($course->fullname), $attributes), 3);
+        echo $OUTPUT->heading(html_writer::link(
+            new moodle_url('/course/view.php', array('id' => $course->id)), $fullname, $attributes), 3);
         if (array_key_exists($course->id,$htmlarray)) {
             foreach ($htmlarray[$course->id] as $modname => $html) {
                 echo $html;
@@ -2269,22 +2256,6 @@ function make_categories_options() {
 }
 
 /**
- * Gets the name of a course to be displayed when showing a list of courses.
- * By default this is just $course->fullname but user can configure it. The
- * result of this function should be passed through print_string.
- * @param object $course Moodle course object
- * @return string Display name of course (either fullname or short + fullname)
- */
-function get_course_display_name_for_list($course) {
-    global $CFG;
-    if (!empty($CFG->courselistshortnames)) {
-       return $course->fullname .' ('.$course->shortname . ')';
-    } else {
-        return $course->fullname;
-    }
-}
-
-/**
  * Prints the category info in indented fashion
  * This function is only used by print_whole_category_list() above
  */
@@ -2535,16 +2506,9 @@ function print_course($course, $highlightterms = '') {
     echo html_writer::start_tag('h3', array('class'=>'name'));
 
     $linkhref = new moodle_url('/course/view.php', array('id'=>$course->id));
-	if(preg_match("#[A-Z]+HD[0-9]+#", $course->shortname))
-		$linktext = highlight($highlightterms, format_string($course->fullname.' (HD)'));
-	else if(preg_match("#[A-Z]+HC[0-9]+#", $course->shortname))
-		$linktext = highlight($highlightterms, format_string($course->fullname.' (Charleroi)'));
-	else
-		$linktext = highlight($highlightterms, format_string($course->fullname));
-		
-    $coursename = get_course_display_name_for_list($course);
 
-    //$linktext = highlight($highlightterms, format_string($coursename));
+    $coursename = get_course_display_name_for_list($course);
+    $linktext = highlight($highlightterms, format_string($coursename));
     $linkparams = array('title'=>get_string('entercourse'));
     if (empty($course->visible)) {
         $linkparams['class'] = 'dimmed';
@@ -2677,20 +2641,19 @@ function print_my_moodle() {
         unset($course);
         unset($host);
 
-        // if ($DB->count_records("course") > (count($courses) + 1) ) {  // Some courses not being displayed
-            // echo "<table width=\"100%\"><tr><td align=\"center\">";
-            // print_course_search("", false, "short");
-            // echo "</td><td align=\"center\">";
-            // echo $OUTPUT->single_button("$CFG->wwwroot/course/index.php", get_string("fulllistofcourses"), "get");
-            // echo "</td></tr></table>\n";
-        // }
+        if ($DB->count_records("course") > (count($courses) + 1) ) {  // Some courses not being displayed
+            echo "<table width=\"100%\"><tr><td align=\"center\">";
+            print_course_search("", false, "short");
+            echo "</td><td align=\"center\">";
+            echo $OUTPUT->single_button("$CFG->wwwroot/course/index.php", get_string("fulllistofcourses"), "get");
+            echo "</td></tr></table>\n";
+        }
 
     } else {
         if ($DB->count_records("course_categories") > 1) {
-            // echo $OUTPUT->box_start("categorybox");
-            // print_whole_category_list();
-            // echo $OUTPUT->box_end();
-			print("Vous n'&ecirc;tes inscrit &agrave; aucun cours");
+            echo $OUTPUT->box_start("categorybox");
+            print_whole_category_list();
+            echo $OUTPUT->box_end();
         } else {
             print_courses(0);
         }

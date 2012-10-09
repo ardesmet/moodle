@@ -33,7 +33,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['admindirname'] = 'Ylläpitohakemisto';
 $string['availablelangs'] = 'Saatavilla olevat kielipaketit';
 $string['chooselanguagehead'] = 'Valitse kieli';
-$string['chooselanguagesub'] = 'Valitse kieli asennusohjelmaa varten. Voit valita muita kieliä käyttöösi myöhemmin.';
+$string['chooselanguagesub'] = 'Valitse kieli asennusohjelmaa varten. Tätä kieltä käytetään sivuston oletuskielenä, jonka voi vaihtaa tarpeen mukaan. Myöhemmin voit myös lisätä käyttöön muitakin kieliä.';
 $string['clialreadyconfigured'] = 'Tiedosto config.php on jo olemassa, käytä admin/cli/install_database.php -tiedostoa jos haluat asentaa tämän sivuston.';
 $string['clialreadyinstalled'] = 'Tiedosto config.php on jo olemassa, ole hyvä ja käytä admin/cli/upgrade.php:ta jos haluat päivittää sivustosi';
 $string['cliinstallheader'] = 'Moodlen {$a} komentoriviasennusohjelma';
@@ -43,7 +43,7 @@ $string['databasetypehead'] = 'Valitse tietokannan ajuri';
 $string['dataroot'] = 'Datahakemisto';
 $string['datarootpermission'] = 'Datahakemistojen oikeudet';
 $string['dbprefix'] = 'Taulukon etumerkki';
-$string['dirroot'] = 'Moodle hakemisto';
+$string['dirroot'] = 'Moodle-hakemisto';
 $string['environmenthead'] = 'Ympäristön tarkistus';
 $string['environmentsub2'] = 'Jokaisessa Moodle-julkaisussa on joitakin vähimmäisvaatimuksia PHP-versiolta sekä joitakin pakollisia PHP-lisäosia.
 Ennen jokaista asennusta ja päivitystä suoritetaan täysi ympäristön tarkistus. Ole hyvä ja ota yhteyttä palvelimen ylläpitoon jos et tiedä kuinka asentaa uutta versiota tai PHP-lisäosia.';
@@ -82,9 +82,7 @@ $string['pathsunsecuredataroot'] = 'Dataroot-sijainti on turvallinen';
 $string['pathswrongadmindir'] = 'Admin-hakemistoa ei ole';
 $string['phpextension'] = '{$a} PHP-lisäosa';
 $string['phpversion'] = 'PHP versio';
-$string['phpversionhelp'] = '<p>Moodle vaatii vähintään PHP version 4.1.0.</p>
-<p>Käytät parhaillaan versiota {$a}</p>
-<p>Sinun täytyy päivittää PHP tai siirtää isäntä uudemman PHP version kanssa!</p>';
+$string['phpversionhelp'] = '<p>Moodle vaatii vähintään PHP-version 4.3.0 tai 5.1.0 (5.0.x sisältää monia tunnettuja ongelmia).</p> <p>Käytössäsi on versio {$a}</p> <p>Sinun pitää päivittää PHP tai siirtää palvelimelle jossa on uudempi PHP.<br /> (Jos käytössäsi on 5.0.x voit myös päivittää alaspäin 4.4.x -versioon)</p>';
 $string['welcomep10'] = '{$a->installername} ({$a->installerversion})';
 $string['welcomep20'] = 'Näet tämän sivun koska olet onnistuneesti asentanut ja käynnistänyt <strong>{$a->packname} {$a->packversion}</strong> paketin tietokoneellasi.
 Onnittelut!';
