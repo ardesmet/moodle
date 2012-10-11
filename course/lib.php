@@ -47,6 +47,7 @@ define('FIRSTUSEDEXCELROW', 3);
 define('MOD_CLASS_ACTIVITY', 0);
 define('MOD_CLASS_RESOURCE', 1);
 
+
 function make_log_url($module, $url) {
     switch ($module) {
         case 'course':
@@ -849,6 +850,7 @@ function print_overview($courses, array $remote_courses=array()) {
             }
         }
     }
+	print_r($courses);
     foreach ($courses as $course) {
         $fullname = format_string($course->fullname, true, array('context' => get_context_instance(CONTEXT_COURSE, $course->id)));
         echo $OUTPUT->box_start('coursebox');
@@ -2503,9 +2505,15 @@ function print_course($course, $highlightterms = '') {
     echo html_writer::start_tag('h3', array('class'=>'name'));
 
     $linkhref = new moodle_url('/course/view.php', array('id'=>$course->id));
-
+	
     $coursename = get_course_display_name_for_list($course);
-    $linktext = highlight($highlightterms, format_string($coursename));
+    //$linktext = highlight($highlightterms, format_string($coursename));
+	if(preg_match("#[A-Z]+HD[0-9]+#", $course->shortname))
+		$linktext = highlight($highlightterms, format_string($course->fullname.' (HD)'));
+	else if(preg_match("#[A-Z]+HC[0-9]+#", $course->shortname))
+		$linktext = highlight($highlightterms, format_string($course->fullname.' (Charleroi)'));
+	else
+		$linktext = highlight($highlightterms, format_string($course->fullname));
     $linkparams = array('title'=>get_string('entercourse'));
     if (empty($course->visible)) {
         $linkparams['class'] = 'dimmed';
@@ -2648,9 +2656,10 @@ function print_my_moodle() {
 
     } else {
         if ($DB->count_records("course_categories") > 1) {
-            echo $OUTPUT->box_start("categorybox");
-            print_whole_category_list();
-            echo $OUTPUT->box_end();
+            // echo $OUTPUT->box_start("categorybox");
+            // print_whole_category_list();
+            // echo $OUTPUT->box_end();
+			print("Vous n'&ecirc;tes inscrit &agrave; aucun cours");
         } else {
             print_courses(0);
         }
