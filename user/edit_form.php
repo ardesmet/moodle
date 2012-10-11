@@ -5,6 +5,7 @@ if (!defined('MOODLE_INTERNAL')) {
 }
 
 require_once($CFG->dirroot.'/lib/formslib.php');
+require_once($CFG->dirroot.'/local/lib.php');
 
 class user_edit_form extends moodleform {
 
@@ -45,7 +46,8 @@ class user_edit_form extends moodleform {
         useredit_shared_definition($mform, $editoroptions, $filemanageroptions);
 
         /// extra settigs
-        if (!empty($CFG->gdversion) and !empty($CFG->disableuserimages)) {
+	
+        if (!empty($CFG->gdversion) and !empty($CFG->disableuserimages) and !(check_staff($USER))) {
             $mform->removeElement('deletepicture');
             $mform->removeElement('imagefile');
             $mform->removeElement('imagealt');
