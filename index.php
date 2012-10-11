@@ -217,8 +217,8 @@
                     print_courses(0);
                     echo html_writer::tag('span', '', array('class'=>'skip-block-to', 'id'=>'skipavailablecourses'));
                 } else {
-                    echo html_writer::tag('div', get_string('therearecourses', '', $ncourses), array('class' => 'notifyproblem'));
-                    print_course_search('', false, 'short');
+                    //echo html_writer::tag('div', get_string('therearecourses', '', $ncourses), array('class' => 'notifyproblem'));
+                    //print_course_search('', false, 'short');
                 }
             break;
 
@@ -228,7 +228,7 @@
                 echo $OUTPUT->box_start('generalbox categorybox');
                 print_whole_category_list(NULL, NULL, NULL, -1, false);
                 echo $OUTPUT->box_end();
-                print_course_search('', false, 'short');
+                //print_course_search('', false, 'short');
                 echo html_writer::tag('span', '', array('class'=>'skip-block-to', 'id'=>'skipcategories'));
             break;
 
