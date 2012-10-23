@@ -49,7 +49,12 @@ require_once($CFG->libdir.'/ldaplib.php');
  */
 class auth_plugin_ldap extends auth_plugin_base {
 
-    /**
+    function logoutpage_hook() {
+        global $USER, $CFG, $redirect, $DB;
+        $redirect = get_login_url().'?authldap_skipntlmsso=1';
+ }
+	
+	/**
      * Init plugin config from database settings depending on the plugin auth type.
      */
     function init_plugin($authtype) {
