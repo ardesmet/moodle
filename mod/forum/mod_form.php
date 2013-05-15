@@ -60,7 +60,10 @@ class mod_forum_mod_form extends moodleform_mod {
         $options[FORUM_FORCESUBSCRIBE] = get_string('subscriptionforced', 'forum');
         $options[FORUM_INITIALSUBSCRIBE] = get_string('subscriptionauto', 'forum');
         $options[FORUM_DISALLOWSUBSCRIBE] = get_string('subscriptiondisabled','forum');
-        $mform->addElement('select', 'forcesubscribe', get_string('subscriptionmode', 'forum'), $options);
+		//print_r($this->context);
+		// $context = context::instance_by_id($this->page->context);
+		 if(has_capability('mod/forum:allowforcesubscribe', $this->context))
+			$mform->addElement('select', 'forcesubscribe', get_string('subscriptionmode', 'forum'), $options);
         $mform->addHelpButton('forcesubscribe', 'subscriptionmode', 'forum');
 
         $options = array();
