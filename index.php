@@ -222,8 +222,9 @@
                     echo html_writer::tag('span', '', array('class'=>'skip-block-to', 'id'=>'skipmycourses'));
                     break;
                 }
-                // No "break" here. If there are no enrolled courses - continue to 'Available courses'.
-
+                // Rajout Break
+			break;
+			
             case FRONTPAGEALLCOURSELIST:
                 $availablecourseshtml = $courserenderer->frontpage_available_courses();
                 if (!empty($availablecourseshtml)) {
