@@ -2117,12 +2117,11 @@ class auth_plugin_ldap extends auth_plugin_base {
             }
         }
     }
-	
+
 	 function logoutpage_hook() {
         global $USER, $CFG, $redirect, $DB;
         $redirect = get_login_url().'?authldap_skipntlmsso=1';
  }
-
     /**
      * When using NTLM SSO, the format of the remote username we get in
      * $_SERVER['REMOTE_USER'] may vary, depending on where from and how the web
