@@ -33,3 +33,10 @@ composer.lock
 /behat.yml
 */yui/build/*/*-coverage.js
 /lib/yuilib/*/build/*/*-coverage.js
+/blocks/mesinfos
+/blocks/course_contents
+/theme/simplespace
+/theme/simple
+/theme/standard_fluid
+/theme/studentcorner
+/test.php
