@@ -685,13 +685,13 @@ class core_files_renderer extends plugin_renderer_base {
                 <td class="mdl-right"></td>
                 <td class="mdl-left"><input type="radio"/><label>&nbsp;'.get_string('makefilereference', 'repository').'</label></td></tr>
             <tr class="{!}fp-saveas">
-                <td class="mdl-right"><label>'.get_string('saveas', 'repository').'</label>:</td>
+                <td class="mdl-right"><label>'.get_string('saveas', 'repository').':</label></td>
                 <td class="mdl-left"><input type="text"/></td></tr>
             <tr class="{!}fp-setauthor">
-                <td class="mdl-right"><label>'.get_string('author', 'repository').'</label>:</td>
+                <td class="mdl-right"><label>'.get_string('author', 'repository').':</label></td>
                 <td class="mdl-left"><input type="text" /></td></tr>
             <tr class="{!}fp-setlicense">
-                <td class="mdl-right"><label>'.get_string('chooselicense', 'repository').'</label>:</td>
+                <td class="mdl-right"><label>'.get_string('chooselicense', 'repository').':</label></td>
                 <td class="mdl-left"><select></select></td></tr>
         </table>
         <div class="fp-select-buttons">
@@ -740,16 +740,16 @@ class core_files_renderer extends plugin_renderer_base {
         <form enctype="multipart/form-data" method="POST">
             <table >
                 <tr class="{!}fp-file">
-                    <td class="mdl-right"><label>'.get_string('attachment', 'repository').'</label>:</td>
+                    <td class="mdl-right"><label>'.get_string('attachment', 'repository').':</label></td>
                     <td class="mdl-left"><input type="file"/></td></tr>
                 <tr class="{!}fp-saveas">
-                    <td class="mdl-right"><label>'.get_string('saveas', 'repository').'</label>:</td>
+                    <td class="mdl-right"><label>'.get_string('saveas', 'repository').':</label></td>
                     <td class="mdl-left"><input type="text"/></td></tr>
                 <tr class="{!}fp-setauthor">
-                    <td class="mdl-right"><label>'.get_string('author', 'repository').'</label>:</td>
+                    <td class="mdl-right"><label>'.get_string('author', 'repository').':</label></td>
                     <td class="mdl-left"><input type="text"/></td></tr>
                 <tr class="{!}fp-setlicense">
-                    <td class="mdl-right"><label>'.get_string('chooselicense', 'repository').'</label>:</td>
+                    <td class="mdl-right"><label>'.get_string('chooselicense', 'repository').':</label></td>
                     <td class="mdl-left"><select></select></td></tr>
             </table>
         </form>
