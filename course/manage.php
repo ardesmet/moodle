@@ -486,6 +486,7 @@ if (!$courses) {
         $attributes = array();
         $attributes['class'] = $acourse->visible ? '' : 'dimmed';
         $coursename = get_course_display_name_for_list($acourse);
+		$coursename = $coursename.' '.$acourse->shortname;
         $coursename = format_string($coursename, true, array('context' => $coursecontext));
         $coursename = html_writer::link($courseurl, $coursename, $attributes);
 
