@@ -1,0 +1,9 @@
+<LINK rel="stylesheet" type="text/css" href="http://www.student-corner.be/demo_files/style.css">
+<p>Vous êtes correctement connectés sur le Student-Corner.</p>
+<p>Ci-dessous vous trouverez la liste de vos cours (<span style="color: #ff0000;">celle-ci est actualisée totues les heures sur base des informations validées par l'AEMs</span>). En cas de problème n'hésitez pas à contacter le <a href="mailto:student-corner@uclouvain-mons.be">Service informatique</a>.</p>
+<center>
+<div id="canvas_france"></div>
+</center>
+<script src="http://www.student-corner.be/demo_files/raphael-min.js" type="text/javascript"></script>
+<script src="http://www.student-corner.be/demo_files/script.js" type="text/javascript"></script>
+
