@@ -1808,7 +1808,6 @@ class core_course_renderer extends plugin_renderer_base {
             $sortorder = 'visible DESC,sortorder ASC';
         }
         $courses  = enrol_get_my_courses_visible('summary, summaryformat', $sortorder);
-        print_object($courses);
         $rhosts   = array();
         $rcourses = array();
         if (!empty($CFG->mnet_dispatcher_mode) && $CFG->mnet_dispatcher_mode==='strict') {
