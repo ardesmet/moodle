@@ -716,7 +716,7 @@ class core_calendar_renderer extends plugin_renderer_base {
         }
 
         if (has_capability('moodle/calendar:manageentries', context_system::instance()) && !empty($CFG->calendar_adminseesall)) {
-            $courses = get_courses('all', 'c.shortname','c.id,c.shortname');
+            $courses = get_courses('all', 'c.fullname','c.id,c.fullname');
         } else {
             $courses = enrol_get_my_courses();
         }
@@ -727,7 +727,7 @@ class core_calendar_renderer extends plugin_renderer_base {
         $courseoptions[SITEID] = get_string('fulllistofcourses');
         foreach ($courses as $course) {
             $coursecontext = context_course::instance($course->id);
-            $courseoptions[$course->id] = format_string($course->shortname, true, array('context' => $coursecontext));
+            $courseoptions[$course->id] = format_string($course->fullname, true, array('context' => $coursecontext));
         }
 
         if ($this->page->course->id !== SITEID) {
