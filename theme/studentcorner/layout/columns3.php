@@ -53,7 +53,7 @@ echo $OUTPUT->doctype() ?>
 <header role="banner" class="navbar navbar-fixed-top<?php echo $html->navbarclass ?>">
     <nav role="navigation" class="navbar-inner">
         <div class="container-fluid">
-            <a class="brand" href="<?php echo $CFG->wwwroot;?>"><?php echo $SITE->shortname; ?></a>
+            <!-- <a class="brand" href="<?php echo $CFG->wwwroot;?>"><?php echo $SITE->shortname; ?></a> -->
             <a class="btn btn-navbar" data-toggle="workaround-collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -63,21 +63,23 @@ echo $OUTPUT->doctype() ?>
                 <?php echo $OUTPUT->custom_menu(); ?>
                 <ul class="nav pull-right">
                     <li><?php echo $OUTPUT->page_heading_menu(); ?></li>
-                    <li class="navbar-text"><?php echo $OUTPUT->login_info() ?></li>
+                    <li class="navbar-text"><?php //echo $OUTPUT->login_info() ?></li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-
+<?php echo $html->heading; ?>
+ <?php echo $OUTPUT->login_info() ?>
 <div id="page" class="container-fluid">
 
-    <header id="page-header" class="clearfix">
-        <div id="page-navbar">
+   <header id="page-header" class="clearfix">
+       
+		<div>
             <nav class="breadcrumb-button"><?php echo $OUTPUT->page_heading_button(); ?></nav>
             <?php echo $OUTPUT->navbar(); ?>
         </div>
-        <?php echo $html->heading; ?>
+        
         <div id="course-header">
             <?php echo $OUTPUT->course_header(); ?>
         </div>
@@ -99,19 +101,20 @@ echo $OUTPUT->doctype() ?>
         <?php echo $OUTPUT->blocks('side-post', 'span2'); ?>
     </div>
 
-    <footer id="page-footer">
+   
+
+    <?php echo $OUTPUT->standard_end_of_body_html() ?>
+
+</div>
+ <footer id="page-footer">
         <div id="course-footer"><?php echo $OUTPUT->course_footer(); ?></div>
         <p class="helplink"><?php echo $OUTPUT->page_doc_link(); ?></p>
         <?php
         echo $html->footnote;
         echo $OUTPUT->login_info();
-        echo $OUTPUT->home_link();
+        //echo $OUTPUT->home_link();
         echo $OUTPUT->standard_footer_html();
         ?>
     </footer>
-
-    <?php echo $OUTPUT->standard_end_of_body_html() ?>
-
-</div>
 </body>
 </html>
