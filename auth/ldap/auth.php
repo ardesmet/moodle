@@ -675,7 +675,7 @@ class auth_plugin_ldap extends auth_plugin_base {
         $table->add_index('username', XMLDB_INDEX_UNIQUE, array('mnethostid', 'username'));
 
         print_string('creatingtemptable', 'auth_ldap', 'tmp_extuser');
-        $dbman->create_temp_table($table);
+        $dbman->create_table($table);
 
         ////
         //// get user's list from ldap to sql in a scalable fashion
@@ -750,7 +750,7 @@ class auth_plugin_ldap extends auth_plugin_base {
         if ($this->config->removeuser != AUTH_REMOVEUSER_KEEP) {
             $sql = 'SELECT u.*
                       FROM {user} u
-                      LEFT JOIN {tmp_extuser} e ON (u.username = e.username AND u.mnethostid = e.mnethostid)
+                      LEFT JOIN {tmp_extuser} e ON (u.username COLLATE DATABASE_DEFAULT = e.username COLLATE DATABASE_DEFAULT AND u.mnethostid = e.mnethostid)
                      WHERE u.auth = ?
                            AND u.deleted = 0
                            AND e.username IS NULL';
@@ -786,7 +786,7 @@ class auth_plugin_ldap extends auth_plugin_base {
         if (!empty($this->config->removeuser) and $this->config->removeuser == AUTH_REMOVEUSER_SUSPEND) {
             $sql = "SELECT u.id, u.username
                       FROM {user} u
-                      JOIN {tmp_extuser} e ON (u.username = e.username AND u.mnethostid = e.mnethostid)
+                      JOIN {tmp_extuser} e ON (u.username COLLATE DATABASE_DEFAULT = e.username COLLATE DATABASE_DEFAULT AND u.mnethostid = e.mnethostid)
                      WHERE u.auth = 'nologin' AND u.deleted = 0";
             $revive_users = $DB->get_records_sql($sql);
 
@@ -881,7 +881,7 @@ class auth_plugin_ldap extends auth_plugin_base {
         // note: we do not care about deleted accounts anymore, this feature was replaced by suspending to nologin auth plugin
         $sql = 'SELECT e.id, e.username
                   FROM {tmp_extuser} e
-                  LEFT JOIN {user} u ON (e.username = u.username AND e.mnethostid = u.mnethostid)
+                  LEFT JOIN {user} u ON (e.username COLLATE DATABASE_DEFAULT = u.username COLLATE DATABASE_DEFAULT AND e.mnethostid = u.mnethostid)
                  WHERE u.id IS NULL';
         $add_users = $DB->get_records_sql($sql);
 
