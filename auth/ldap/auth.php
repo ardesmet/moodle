@@ -2262,4 +2262,9 @@ class auth_plugin_ldap extends auth_plugin_base {
         return false;
     }
 
+    function logoutpage_hook() {
+                global $USER, $CFG, $redirect, $DB;
+        $redirect = get_login_url().'?authldap_skipntlmsso=1';
+ }
+
 } // End of the class
