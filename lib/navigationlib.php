@@ -1129,9 +1129,10 @@ class global_navigation extends navigation_node {
                 // When we show all courses we need to show both the my courses and the regular courses branch.
                 $this->rootnodes['courses']->isexpandable = true;
             }
-        } else {
-            $this->rootnodes['courses']->isexpandable = true;
         }
+//        else {
+//            $this->rootnodes['courses']->isexpandable = true;
+//        }
 
         if ($this->rootnodes['mycourses']->isactive) {
             $this->load_courses_enrolled();
