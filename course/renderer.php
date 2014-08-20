@@ -2012,7 +2012,7 @@ class core_course_renderer extends plugin_renderer_base {
         } else {
             $sortorder = 'visible DESC,sortorder ASC';
         }
-        $courses  = enrol_get_my_courses('summary, summaryformat', $sortorder);
+        $courses  = enrol_get_my_courses_visible('summary, summaryformat', $sortorder);
         $rhosts   = array();
         $rcourses = array();
         if (!empty($CFG->mnet_dispatcher_mode) && $CFG->mnet_dispatcher_mode==='strict') {
