@@ -15,16 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * TinyMCE text editor integration version file.
+ * Definition of Forum scheduled tasks.
  *
- * @package    editor_tinymce
- * @copyright  2009 Petr Skoda (http://skodak.org)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   mod_forum
+ * @category  task
+ * @copyright 2014 Dan Poltawski <dan@moodle.com>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2014051201;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2014050800;        // Requires this Moodle version
-$plugin->component = 'editor_tinymce';  // Full name of the plugin (used for diagnostics)
-$plugin->release   = '3.5.10';           // This is NOT a directory name, see lib.php if you need to know where is the editor code!
+$tasks = array(
+    array(
+        'classname' => 'mod_forum\task\cron_task',
+        'blocking' => 0,
+        'minute' => '*',
+        'hour' => '*',
+        'day' => '*',
+        'month' => '*',
+        'dayofweek' => '*'
+    )
+);

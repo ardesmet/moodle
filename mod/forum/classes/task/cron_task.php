@@ -15,16 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * TinyMCE text editor integration version file.
+ * A scheduled task for forum cron.
  *
- * @package    editor_tinymce
- * @copyright  2009 Petr Skoda (http://skodak.org)
+ * @todo MDL-44734 This job will be split up properly.
+ *
+ * @package    mod_forum
+ * @copyright  2014 Dan Poltawski <dan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace mod_forum\task;
 
-defined('MOODLE_INTERNAL') || die();
+class cron_task extends \core\task\scheduled_task {
 
-$plugin->version   = 2014051201;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2014050800;        // Requires this Moodle version
-$plugin->component = 'editor_tinymce';  // Full name of the plugin (used for diagnostics)
-$plugin->release   = '3.5.10';           // This is NOT a directory name, see lib.php if you need to know where is the editor code!
+    /**
+     * Get a descriptive name for this task (shown to admins).
+     *
+     * @return string
+     */
+    public function get_name() {
+        return get_string('crontask', 'mod_forum');
+    }
+
+    /**
+     * Run forum cron.
+     */
+    public function execute() {
+        global $CFG;
+        require_once($CFG->dirroot . '/mod/forum/lib.php');
+        forum_cron();
+    }
+
+}
