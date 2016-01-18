@@ -3965,6 +3965,7 @@ class settings_navigation extends navigation_node {
         }
 
         $modulenode = $this->add(get_string('pluginadministration', $this->page->activityname), null, self::TYPE_SETTING, null, 'modulesettings');
+        $modulenode->nodetype = navigation_node::NODETYPE_BRANCH;
         $modulenode->force_open();
 
         // Settings for the module
@@ -4020,14 +4021,12 @@ class settings_navigation extends navigation_node {
         }
 
         $function = $this->page->activityname.'_extend_settings_navigation';
-        if (!function_exists($function)) {
-            return $modulenode;
+        if (function_exists($function)) {
+            $function($this, $modulenode);
         }
 
-        $function($this, $modulenode);
-
-        // Remove the module node if there are no children
-        if (empty($modulenode->children)) {
+        // Remove the module node if there are no children.
+        if ($modulenode->children->count() <= 0) {
             $modulenode->remove();
         }
 
@@ -4559,6 +4558,7 @@ class settings_navigation extends navigation_node {
         }
 
         $categorynode = $this->add($catcontext->get_context_name(), null, null, null, 'categorysettings');
+        $categorynode->nodetype = navigation_node::NODETYPE_BRANCH;
         $categorynode->force_open();
 
         if (can_edit_in_category($catcontext->instanceid)) {
