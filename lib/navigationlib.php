@@ -1132,9 +1132,10 @@ class global_navigation extends navigation_node {
                 // When we show all courses we need to show both the my courses and the regular courses branch.
                 $this->rootnodes['courses']->isexpandable = true;
             }
-        } else {
-            $this->rootnodes['courses']->isexpandable = true;
         }
+//        else {
+//            $this->rootnodes['courses']->isexpandable = true;
+//        }
 
         // Load the users enrolled courses if they are viewing the My Moodle page AND the admin has not
         // set that they wish to keep the My Courses branch collapsed by default.
