@@ -2065,6 +2065,12 @@ class core_course_renderer extends plugin_renderer_base {
                 $output .= html_writer::end_tag('div'); // .courses
             }
         }
+        if(empty($courses))
+                    {
+                        $output .= html_writer::start_tag('div', array('class' => 'courses'));
+                        $output .= "Vous n'&ecirc;tes inscrit &agrave; aucun cours";
+                        $output .= html_writer::end_tag('div');
+                    }
         return $output;
     }
 
