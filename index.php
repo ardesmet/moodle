@@ -258,6 +258,8 @@ foreach (explode(',', $frontpagelayout) as $v) {
                 break;
             }
             // No "break" here. If there are no enrolled courses - continue to 'Available courses'.
+            //Add break. Not needed to see all Available courses
+            break;
 
         case FRONTPAGEALLCOURSELIST:
             $availablecourseshtml = $courserenderer->frontpage_available_courses();
