@@ -74,9 +74,10 @@ class user_edit_form extends moodleform {
 
         // Shared fields.
         useredit_shared_definition($mform, $editoroptions, $filemanageroptions, $user);
-
+        $coursecontext = context_course::instance(1726);
+        
         // Extra settigs.
-        if (!empty($CFG->disableuserimages)) {
+        if (!empty($CFG->disableuserimages) && !(is_enrolled($coursecontext,$USER)) ) {
             $mform->removeElement('deletepicture');
             $mform->removeElement('imagefile');
             $mform->removeElement('imagealt');
