@@ -19,7 +19,7 @@
  *
  * @package    core_antivirus
  * @copyright  2015 Ruslan Kabalin, Lancaster University.
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or laterr
  */
 
 require_once('../config.php');
